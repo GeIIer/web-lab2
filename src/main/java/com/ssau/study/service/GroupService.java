@@ -3,6 +3,7 @@ package com.ssau.study.service;
 import com.ssau.study.dto.GroupPojo;
 import com.ssau.study.entity.Group;
 import com.ssau.study.factoryDto.GroupFactory;
+import com.ssau.study.factoryDto.StudentFactory;
 import com.ssau.study.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ public class GroupService {
     private final GroupRepository groupRepository;
 
     private final GroupFactory groupFactory;
+
+    private final StudentFactory studentFactory;
 
 
     public List<GroupPojo> findAll() {
@@ -49,12 +52,7 @@ public class GroupService {
         return groupFactory.toPojo(groupRepository.save(groupFactory.toEntity(dto)));
     }
 
-    public boolean deleteGroup(Long id) {
-        try {
-            groupRepository.deleteById(id);
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+    public void deleteGroup(Long id) {
+        groupRepository.deleteById(id);
     }
 }

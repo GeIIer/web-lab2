@@ -47,13 +47,8 @@ public class StudentService {
         return studentFactory.toPojo(studentRepository.save(studentFactory.toEntity(dto)));
     }
 
-    public boolean deleteById(Long id) {
-        try {
-            studentRepository.deleteById(id);
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-        return true;
+    public void deleteById(Long id) {
+        studentRepository.deleteById(id);
     }
 
     public StudentPojo findById(long id) {

@@ -15,10 +15,10 @@ public class GroupFactory {
         return GroupPojo.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .students(entity.getStudents()
+                .students(entity.getStudents() != null ? entity.getStudents()
                         .stream()
                         .map(studentFactory::toPojo)
-                        .toList())
+                        .toList() : null)
                 .build();
     }
 
@@ -26,10 +26,10 @@ public class GroupFactory {
         Group group = new Group();
         group.setId(dto.getId());
         group.setName(dto.getName());
-        group.setStudents(dto.getStudents()
+        group.setStudents(dto.getStudents() != null ? dto.getStudents()
                 .stream()
                 .map(studentFactory::toEntity)
-                .toList());
+                .toList() : null);
         return group;
     }
 }

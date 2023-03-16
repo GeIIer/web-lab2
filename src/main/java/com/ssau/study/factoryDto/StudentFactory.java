@@ -18,7 +18,7 @@ public class StudentFactory {
                 .name(entity.getName())
                 .birthdate(entity.getBirthdate())
                 .number(entity.getNumber())
-                .group(entity.getGroup().getName())
+                .group(entity.getGroup() != null ? entity.getGroup().getId() : null)
                 .build();
     }
 
@@ -28,7 +28,9 @@ public class StudentFactory {
         student.setName(dto.getName());
         student.setBirthdate(dto.getBirthdate());
         student.setNumber(dto.getNumber());
-        student.setGroup(groupRepository.findByName(dto.getName()).orElse(null));
+        if (dto.getGroup() != null) {
+            student.setGroup(groupRepository.findById(dto.getGroup()).orElse(null));
+        }
         return student;
     }
 }

@@ -40,9 +40,7 @@ public class GroupController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteGroup(@PathVariable Long id) {
-        return groupService.deleteGroup(id);
+    public void deleteGroup(@PathVariable Long id) {
+        groupService.deleteGroup(id);
     }
-
-
 }
